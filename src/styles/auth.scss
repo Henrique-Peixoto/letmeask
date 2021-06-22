@@ -52,6 +52,21 @@ $light-grey: #a8a8b3;
       align-self: center;
     }
 
+    h2 {
+      font: 24px 'Poppins', sans-serif;
+      margin: 64px 0 24px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #737380;
+      margin-top: 16px;
+
+      a {
+        color: #e559f9;
+      }
+    }
+
     .create-room {
       margin-top: 64px;
       height: 50px;
