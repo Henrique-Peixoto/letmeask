@@ -1,5 +1,5 @@
-import { useAuth } from '../hooks/useAuth';
 import { useHistory  } from 'react-router';
+import { useAuth } from '../hooks/useAuth';
 import { Button } from '../components/Button';
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
