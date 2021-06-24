@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 // import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { Question } from '../components/Question';
@@ -16,9 +16,17 @@ type RoomParams = {
 
 export function AdminRoom() {
   // const { user } = useAuth();
+  const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const { questions, title } = useRoom(roomId);
+
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date(),
+    });
+    history.push('/');
+  }
 
   async function handleDeleteQuestion(questionId: string) {
     if(window.confirm('Você tem certeza que deseja excluir a questão?')){
@@ -33,7 +41,7 @@ export function AdminRoom() {
           <img src={logoImg} alt="Letmeask logo" />
           <div>
             <RoomCode code={roomId}/>
-            <Button isOutlined>Encerrar Sala</Button>
+            <Button onClick={handleEndRoom} isOutlined>Encerrar Sala</Button>
           </div>
         </div>
       </header>
