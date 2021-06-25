@@ -1,4 +1,5 @@
-import { useState, FormEvent } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
@@ -14,6 +15,7 @@ type RoomParams = {
 }
 
 export function Room() {
+  const history = useHistory();
   const [newQuestion, setNewQuestion] = useState('');
   const { user } = useAuth();
   const params = useParams<RoomParams>();
@@ -55,6 +57,31 @@ export function Room() {
       })  
     }
   }
+
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomId}`);
+
+    roomRef.get().then(room => {
+      const data = room.val();
+
+      if(!data){
+        alert('A sala acessada não existe.');
+        history.push('/');
+        return () => {
+          roomRef.off('value');
+        }
+      }
+
+      if(data.endedAt){
+        alert('A sala que você tentou entrar já está fechada.');
+        history.push('/');
+      }
+    })
+
+    return () => {
+      roomRef.off('value');
+    }
+  }, [history, roomId]);
 
   return (
     <div id="page-room">

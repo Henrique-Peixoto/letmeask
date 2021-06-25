@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from './useAuth';
 import { database } from '../services/firebase';
-import { stringify } from 'querystring';
 
 type FirebaseQuestions = Record<string, {
   author: {
@@ -39,6 +38,11 @@ export function useRoom(roomId: string) {
 
     roomRef.on('value', room => {
       const databaseRoom = room.val();
+
+      if(!databaseRoom){
+        return;
+      }
+
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
@@ -54,13 +58,25 @@ export function useRoom(roomId: string) {
       })
 
       setTitle(databaseRoom.title);
+      // if(questions.length >= 2){
+      //   const sortedQuestions = parsedQuestions.sort((a, b) => a.likeCount - b.likeCount);
+      //   setQuestions(sortedQuestions)
+      // }else{
       setQuestions(parsedQuestions);
+      // }
 
       return () => {
         roomRef.off('value');
       }
     })
-  }, [roomId, user?.id]);  
+  }, [roomId, user?.id]);
+
+  // useEffect(() => {
+  //   if(questions.length >= 2){
+  //     const sortedQuestions = questions.sort();
+  //     setQuestions(sortedQuestions);
+  //   }
+  // }, [questions]);
 
   return { questions, title }
 }

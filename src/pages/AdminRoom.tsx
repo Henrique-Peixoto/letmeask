@@ -9,6 +9,7 @@ import { database } from '../services/firebase';
 import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
 import '../styles/room.scss';
+import { useEffect } from 'react';
 
 type RoomParams = {
   id: string;
@@ -33,6 +34,21 @@ export function AdminRoom() {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
     }
   }
+
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomId}`);
+
+    roomRef.get().then(room => {
+      if(!room.val()){
+        alert('A sala acessada não existe.')
+        history.push('/');
+      }
+    })
+
+    return () => {
+      roomRef.off('value');
+    }
+  }, [history, roomId]);
 
   return (
     <div id="page-room">
