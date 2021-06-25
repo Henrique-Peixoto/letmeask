@@ -1,24 +1,21 @@
 import { useEffect } from 'react';
-// import { useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-// import { useAuth } from '../hooks/useAuth';
-import { useRoom } from '../hooks/useRoom';
-import { Question } from '../components/Question';
-import { Button } from '../components/Button';
-import { RoomCode } from '../components/RoomCode';
-import { database } from '../services/firebase';
-import logoImg from '../assets/images/logo.svg';
-import deleteImg from '../assets/images/delete.svg';
-import checkImg from '../assets/images/check.svg';
-import answerImg from '../assets/images/answer.svg';
-import '../styles/room.scss';
+import { useRoom } from '../../hooks/useRoom';
+import { Question } from '../../components/Question';
+import { Button } from '../../components/Button';
+import { RoomCode } from '../../components/RoomCode';
+import { database } from '../../services/firebase';
+import logoImg from '../../assets/images/logo.svg';
+import deleteImg from '../../assets/images/delete.svg';
+import checkImg from '../../assets/images/check.svg';
+import answerImg from '../../assets/images/answer.svg';
+import './style.scss';
 
 type RoomParams = {
   id: string;
 }
 
 export function AdminRoom() {
-  // const { user } = useAuth();
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
