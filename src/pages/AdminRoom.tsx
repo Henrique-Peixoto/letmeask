@@ -2,6 +2,7 @@
 import { useHistory, useParams } from 'react-router';
 // import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
+import toast from 'react-hot-toast';
 import { Question } from '../components/Question';
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
@@ -31,6 +32,7 @@ export function AdminRoom() {
   async function handleDeleteQuestion(questionId: string) {
     if(window.confirm('Você tem certeza que deseja excluir a questão?')){
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+      toast.success('Questão excluída com sucesso!');
     }
   }
 
@@ -56,23 +58,27 @@ export function AdminRoom() {
         </div>
 
         <div className="questions-list">
-          {questions.map(question => {
-            return (
-              <Question
-                key={question.id}
-                content={question.content}
-                author={question.author}
-              >
-                <button
-                  className="delete-button"
-                  type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+          {questions.length === 0 ? 
+            <p>Não há questões nesta sala.</p>
+          :
+            questions.map(question => {
+              return (
+                <Question
+                  key={question.id}
+                  content={question.content}
+                  author={question.author}
                 >
-                  <img src={deleteImg} alt="Deletar esta pergunta" />
-                </button>
-              </Question>
-            )
-          })}
+                  <button
+                    className="delete-button"
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={deleteImg} alt="Deletar esta pergunta" />
+                  </button>
+                </Question>
+              )
+            })
+          }
         </div>
       </main>
     </div>

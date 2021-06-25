@@ -62,6 +62,11 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
       resize: vertical;
       min-height: 130px;
+      outline: none;
+
+      &:focus {
+        border: 2px solid #835afd;
+      }
     }
 
     .form-footer {
@@ -108,5 +113,10 @@
 
   .questions-list {
     margin-top: 32px;
+
+    p {
+      font-size: 16px;
+      color: #737380;
+    }
   }
 }
