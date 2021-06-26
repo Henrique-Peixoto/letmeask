@@ -25,18 +25,20 @@ export function Home() {
     event.preventDefault();
 
     if(roomCode.trim() === ''){
+      toast.remove();
       toast.error('Digite o nome da sala!');
       return;
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
-
     if(!roomRef.exists()){
+      toast.remove();
       toast.error('Sala não existente!');
       return;
     }
 
     if(roomRef.val().endedAt){
+      toast.remove();
       toast.error('A sala já foi fechada.');
       return;
     }

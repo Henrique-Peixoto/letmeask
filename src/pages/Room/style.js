@@ -11,7 +11,7 @@ export const Header = styled.header`
 `
 
 export const HeaderContent = styled.div`
-max-width: 1120px;
+  max-width: 1120px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -34,6 +34,11 @@ max-width: 1120px;
 export const Main = styled.main`
   max-width: 800px;
   margin: 0 auto;
+
+  .no-questions {
+    margin-top: 16px;
+    color: ${colors.lightBlack};
+  }
 `
 
 export const RoomTitle = styled.div`
