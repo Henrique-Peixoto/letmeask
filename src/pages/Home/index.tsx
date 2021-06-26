@@ -4,10 +4,10 @@ import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { Button } from '../../components/Button';
+import { PageWrapper, Aside, Main, MainContent, Form, CreateRoomButton, Separator } from './style.js';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
-import './style.scss';
 
 export function Home() {
   const [roomCode, setRoomCode] = useState('');
@@ -45,21 +45,21 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
-      <aside>
+    <PageWrapper>
+      <Aside>
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
-      </aside>
-      <main>
-        <div className="main-content">
+      </Aside>
+      <Main>
+        <MainContent>
           <img src={logoImg} alt="Letmeask logo" />
-          <button className="create-room" onClick={handleCreateRoom}>
+          <CreateRoomButton onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Ícone do Google" />
             Crie sua sala com o Google
-          </button>
-          <div className="separator">ou entre em uma sala</div>
-          <form onSubmit={handleJoinRoom}>
+          </CreateRoomButton>
+          <Separator>ou entre em uma sala</Separator>
+          <Form onSubmit={handleJoinRoom}>
             <input 
               type="text"
               placeholder="Digite o código da sala"
@@ -69,9 +69,9 @@ export function Home() {
             <Button type="submit">
               Entrar na sala
             </Button>
-          </form>
-        </div>
-      </main>
-    </div>
+          </Form>
+        </MainContent>
+      </Main>
+    </PageWrapper>
   );
 }

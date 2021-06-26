@@ -7,9 +7,9 @@ import { database } from '../../services/firebase';
 import { Question } from '../../components/Question';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
+import { Form, FormFooter, Header, HeaderContent, Main, PageWrapper, QuestionsList, RoomTitle, UserInfo } from './style';
 import toast from 'react-hot-toast';
 import logoImg from '../../assets/images/logo.svg';
-import './style.scss';
 
 type RoomParams = {
   id: string;
@@ -88,43 +88,43 @@ export function Room() {
   }, [history, roomId]);
 
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
+    <PageWrapper>
+      <Header>
+        <HeaderContent>
           <img src={logoImg} alt="Letmeask logo" />
           <RoomCode code={roomId}/>
-        </div>
-      </header>
+        </HeaderContent>
+      </Header>
 
-      <main>
-        <div className="room-title">
+      <Main>
+        <RoomTitle>
           <h1>Sala {title}</h1>
           { questions.length > 0 
             && 
             <span>{questions.length} {questions.length === 1 ? 'pergunta' : 'peguntas'}</span> 
           }
-        </div>
+        </RoomTitle>
 
-        <form onSubmit={handleSendQuestion}>
+        <Form onSubmit={handleSendQuestion}>
           <textarea 
             placeholder="O que você quer perguntar?" 
             value={newQuestion}
             onChange={event => setNewQuestion(event.target.value)}
           />
 
-          <div className="form-footer">
+          <FormFooter>
             {user ? (
-              <div className="user-info">
+              <UserInfo>
                 <img src={user.avatar} alt={user.name} />
                 <span>{user.name}</span>
-              </div>
+              </UserInfo>
             ) : (
               <span>Para enviar uma pergunta, <button onClick={signInWithGoogle}>faça seu login</button>.</span>
             )}
             <Button type="submit" disabled={!user}>Enviar pergunta</Button>
-          </div>
-        </form>
-        <div className="questions-list">
+          </FormFooter>
+        </Form>
+        <QuestionsList>
           {questions.map(question => {
             return (
               <Question
@@ -150,8 +150,8 @@ export function Room() {
               </Question>
             )
           })}
-        </div>
-      </main>
-    </div>
+        </QuestionsList>
+      </Main>
+    </PageWrapper>
   );
 }

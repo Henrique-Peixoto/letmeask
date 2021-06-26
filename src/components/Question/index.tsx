@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Footer } from './style.js';
 import cx from 'classnames';
 import './style.scss';
 
@@ -27,7 +28,7 @@ export function Question({
       { highlighted: isHighlighted && !isAnswered},
     )}>
       <p>{content}</p>
-      <footer>
+      <Footer>
         <div className="user-info">
           <img src={author.avatar} alt={author.name} />
           <span>{author.name}</span>
@@ -35,7 +36,7 @@ export function Question({
         <div className="bottom-buttons">
           {children}
         </div>
-      </footer>
+      </Footer>
     </div>
   );
 }
