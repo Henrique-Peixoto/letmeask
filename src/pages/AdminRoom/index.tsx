@@ -29,6 +29,7 @@ export function AdminRoom() {
         endedAt: new Date(),
       });
       history.push('/');
+      toast.remove();
       toast('Sala encerrada!', { icon: '🚪'});  
     }
   }
@@ -36,6 +37,7 @@ export function AdminRoom() {
   async function handleDeleteQuestion(questionId: string) {
     if(window.confirm('Você tem certeza que deseja excluir a questão?')){
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+      toast.remove();
       toast('Pergunta deletada', { icon: '🗑️'});
     }
   }
@@ -57,8 +59,9 @@ export function AdminRoom() {
 
     roomRef.get().then(room => {
       if(!room.val()){
-        alert('A sala acessada não existe.')
         history.push('/');
+        toast.remove();
+        toast.error('A sala acessada não existe.')
       }
     })
 
@@ -88,45 +91,49 @@ export function AdminRoom() {
           }
         </RoomTitle>
 
-        <QuestionsList>
-          {questions.map(question => {
-            return (
-              <Question
-                key={question.id}
-                content={question.content}
-                author={question.author}
-                isAnswered={question.isAnswered}
-                isHighlighted={question.isHighlighted}
-              >
-                {!question.isAnswered && 
-                  <>
-                    <button
-                      className="delete-button"
-                      type="button"
-                      onClick={() => handleCheckQuestionAsAnswered(question.id)}
-                    >
-                      <img src={checkImg} alt="Marcar pergunta como respondida" />
-                    </button>
-                    <button
-                      className="delete-button"
-                      type="button"
-                      onClick={() => handleHighlightQuestion(question.id, question.isHighlighted)}
-                    >
-                      <img src={answerImg} alt="Dar destaque à pergunta" />
-                    </button>
-                  </>
-                }
-                <button
-                  className="delete-button"
-                  type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+        { questions.length > 0 ?
+          <QuestionsList>
+            {questions.map(question => {
+              return (
+                <Question
+                  key={question.id}
+                  content={question.content}
+                  author={question.author}
+                  isAnswered={question.isAnswered}
+                  isHighlighted={question.isHighlighted}
                 >
-                  <img src={deleteImg} alt="Deletar esta pergunta" />
-                </button>
-              </Question>
-            )
-          })}
-        </QuestionsList>
+                  {!question.isAnswered && 
+                    <>
+                      <button
+                        className="delete-button"
+                        type="button"
+                        onClick={() => handleCheckQuestionAsAnswered(question.id)}
+                      >
+                        <img src={checkImg} alt="Marcar pergunta como respondida" />
+                      </button>
+                      <button
+                        className="delete-button"
+                        type="button"
+                        onClick={() => handleHighlightQuestion(question.id, question.isHighlighted)}
+                      >
+                        <img src={answerImg} alt="Dar destaque à pergunta" />
+                      </button>
+                    </>
+                  }
+                  <button
+                    className="delete-button"
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={deleteImg} alt="Deletar esta pergunta" />
+                  </button>
+                </Question>
+              )
+            })}
+          </QuestionsList>
+        :
+          <p className="no-questions" >Não há perguntas nesta sala!</p> 
+        }
       </Main>
     </PageWrapper>
   );

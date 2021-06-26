@@ -17,6 +17,7 @@ export function NewRoom() {
     event.preventDefault();
     
     if(newRoom.trim() === ''){
+      toast.remove();
       toast.error('O nome da sala está vazio!');
       return;
     }
@@ -28,6 +29,7 @@ export function NewRoom() {
     })
 
     history.push(`/rooms/${firebaseRoom.key}`);
+    toast.remove();
     toast.success('Sala criada com sucesso!');
   }
 

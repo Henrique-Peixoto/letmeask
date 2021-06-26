@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
-import { Footer } from './style.js';
 import cx from 'classnames';
-import './style.scss';
+import { BottomButtons, Footer, QuestionDetails, UserInfo } from './style.js';
 
 type QuestionProps = {
   content: string;
@@ -22,21 +21,21 @@ export function Question({
   isHighlighted = false,
 }: QuestionProps) {
   return (
-    <div className={cx(
+    <QuestionDetails className={cx(
       'question',
       { answered: isAnswered },
       { highlighted: isHighlighted && !isAnswered},
     )}>
       <p>{content}</p>
       <Footer>
-        <div className="user-info">
+        <UserInfo>
           <img src={author.avatar} alt={author.name} />
           <span>{author.name}</span>
-        </div>
-        <div className="bottom-buttons">
+        </UserInfo>
+        <BottomButtons>
           {children}
-        </div>
+        </BottomButtons>
       </Footer>
-    </div>
+    </QuestionDetails>
   );
 }

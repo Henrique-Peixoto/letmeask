@@ -1,8 +1,11 @@
-.button {
+import styled from "styled-components";
+import * as colors from '../../styles/globalVariables';
+
+export const DefaultButton = styled.button`
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
-  background: #835afd;
+  background: ${colors.lightPurple};
   padding: 0 32px;
   color: white;
   display: flex;
@@ -26,8 +29,8 @@
   }
 
   &.outlined {
-    background: #fff;
-    border: 1px solid #835afd;
-    color: #835afd;
-  }
-}
+    background: white;
+    border: 1px solid ${colors.lightPurple};
+    color: ${colors.lightPurple};
+  } 
+`
