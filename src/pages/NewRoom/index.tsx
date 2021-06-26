@@ -3,9 +3,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
+import { PageWrapper, Aside, Main, MainContent, Form } from './style';
+import toast from 'react-hot-toast';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
-import './style.scss';
 
 export function NewRoom() {
   const { user } = useAuth();
@@ -16,6 +17,8 @@ export function NewRoom() {
     event.preventDefault();
     
     if(newRoom.trim() === ''){
+      toast.remove();
+      toast.error('O nome da sala está vazio!');
       return;
     }
 
@@ -26,20 +29,22 @@ export function NewRoom() {
     })
 
     history.push(`/rooms/${firebaseRoom.key}`);
+    toast.remove();
+    toast.success('Sala criada com sucesso!');
   }
 
   return (
-    <div id="page-auth">
-      <aside>
+    <PageWrapper>
+      <Aside>
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
-      </aside>
-      <main>
-        <div className="main-content">
+      </Aside>
+      <Main>
+        <MainContent>
           <img src={logoImg} alt="Letmeask logo" />
           <h2>Crie uma nova sala</h2>
-          <form onSubmit={handleCreateRoom}>
+          <Form onSubmit={handleCreateRoom}>
             <input 
               type="text"
               placeholder="Nome da sala"
@@ -49,12 +54,12 @@ export function NewRoom() {
             <Button type="submit">
               Criar sala
             </Button>
-          </form>
+          </Form>
           <p>
             Quer entra em uma sala existente? <Link to="/">Clique aqui!</Link>
           </p>
-        </div>
-      </main>
-    </div>
+        </MainContent>
+      </Main>
+    </PageWrapper>
   );
 }
