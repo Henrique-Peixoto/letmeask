@@ -5,6 +5,7 @@ import { Question } from '../../components/Question';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { database } from '../../services/firebase';
+import toast from 'react-hot-toast';
 import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
@@ -26,11 +27,13 @@ export function AdminRoom() {
       endedAt: new Date(),
     });
     history.push('/');
+    toast('Sala encerrada!', { icon: '🚪'});
   }
 
   async function handleDeleteQuestion(questionId: string) {
     if(window.confirm('Você tem certeza que deseja excluir a questão?')){
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+      toast('Pergunta deletada', { icon: '🗑️'});
     }
   }
 
@@ -38,12 +41,18 @@ export function AdminRoom() {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
       isAnswered: true,
     })
+    toast('Pergunta respondida!', { icon: '✏️' });
   }
 
   async function handleHighlightQuestion(questionId: string, questionIsHighlighted: boolean){
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
       isHighlighted: !questionIsHighlighted,
     })
+
+    questionIsHighlighted ? 
+      toast('Pergunta não destacada!', { icon: '🔍' })
+    :
+      toast('Pergunta destacada!', { icon: '🔍' })
   }
 
   useEffect(() => {
