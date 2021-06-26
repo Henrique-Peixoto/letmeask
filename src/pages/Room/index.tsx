@@ -7,6 +7,7 @@ import { database } from '../../services/firebase';
 import { Question } from '../../components/Question';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
+import toast from 'react-hot-toast';
 import logoImg from '../../assets/images/logo.svg';
 import './style.scss';
 
@@ -26,18 +27,20 @@ export function Room() {
     event.preventDefault();
 
     if(newQuestion.trim() === ''){
+      toast.error('A pergunta está vazia!');
       return;
     }
 
     if(!user){
-      throw new Error('Você deve estar logado para enviar uma pergunta.');
+      toast.error('O usuário deve estar logado para fazer uma pergunta!');
+      // throw new Error('Você deve estar logado para enviar uma pergunta.');
     }
 
     const question = {
       content: newQuestion,
       author: {
-        name: user.name,
-        avatar: user.avatar
+        name: user?.name,
+        avatar: user?.avatar
       },
       isHighlighted: false,
       isAnswered: false
@@ -45,6 +48,7 @@ export function Room() {
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
 
+    toast.success('Pergunta enviada!');
     setNewQuestion('');
   }
 
@@ -54,7 +58,7 @@ export function Room() {
     }else{
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
         authorId: user?.id,
-      })  
+      })
     }
   }
 
