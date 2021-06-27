@@ -1,14 +1,30 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    background: #f8f8f8;
-    color: #29292e;
-  }
+html {
+  font-size: 62.5%;
+}
 
-  body, input, button, textarea {
-    font: 400 16px 'Roboto', sans-serif;
+@media (max-width: 796px){
+  html {
+    font-size: 50%;
   }
+}
+
+@media (max-width: 360px){
+  html {
+    font-size: 40%;
+  }
+}
+
+body {
+  background: #f8f8f8;
+  color: #29292e;
+}
+
+body, input, button, textarea {
+  font: 400 16px 'Roboto', sans-serif;
+}

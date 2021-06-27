@@ -8,6 +8,16 @@ export const PageWrapper = styled.div`
 export const Header = styled.header`
   padding: 24px;
   border-bottom: 1px solid ${colors.middleWhite};
+
+  @media (max-width: 900px){
+    padding: 24px 32px;
+    margin: 0 auto 64px;
+  }
+
+  @media (max-width: 360px){
+    padding: 16px 24px;
+    margin-bottom: 0;
+  }
 `
 
 export const HeaderContent = styled.div`
@@ -29,6 +39,14 @@ export const HeaderContent = styled.div`
       height: 40px;
     }
   }
+
+  @media (max-width: 450px){
+    flex-direction: column;
+
+    > img {
+      margin-bottom: 16px;
+    }
+  }
 `
 
 export const Main = styled.main`
@@ -39,6 +57,15 @@ export const Main = styled.main`
     margin-top: 16px;
     color: ${colors.lightBlack};
   }
+
+  @media (max-width: 900px){
+    padding: 0 32px;
+    margin: 0 auto 64px;
+  }
+
+  @media (max-width: 360px){
+    padding: 16px 20px;
+  }
 `
 
 export const RoomTitle = styled.div`
@@ -48,7 +75,7 @@ export const RoomTitle = styled.div`
 
   h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 24px;
+    font-size: 2.4rem;
     color: ${colors.lightBlack};
   }
 
@@ -59,7 +86,16 @@ export const RoomTitle = styled.div`
     padding: 8px 16px;
     color: white;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 360px){
+    margin-top: 0;
+    justify-content: space-between;
+
+    span {
+      font-size: 1.8rem;
+    }
   }
 `
 
@@ -83,7 +119,7 @@ export const FormFooter = styled.div`
   margin-top: 16px;
 
   > span {
-    font-size: 14px;
+    font-size: 1.4rem;
     color: ${colors.darkGrey};
     font-weight: 500;
 
@@ -92,9 +128,17 @@ export const FormFooter = styled.div`
       border: 0;
       color: ${colors.lightPurple};
       text-decoration: underline;
-      font-size: 14px;
+      font-size: 1.4rem;
       font-weight: 500;
       cursor: pointer;
+    }
+  }
+
+  @media (max-width: 360px){
+    flex-direction: column;
+
+    button {
+      margin-top: 16px;
     }
   }
 `
@@ -104,16 +148,24 @@ export const UserInfo = styled.div`
   align-items: center;
 
   img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
   }
 
   span {
-  margin-left: 8px;
-  color: ${colors.lightBlack};
-  font-weight: 500;
-  font-size: 14px;
+    margin-left: 8px;
+    color: ${colors.lightBlack};
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 360px){
+    align-self: flex-start;
+
+    span {
+      font-size: 1.8rem;
+    }
   }
 `
 

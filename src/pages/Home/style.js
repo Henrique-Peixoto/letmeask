@@ -5,6 +5,10 @@ export const PageWrapper = styled.div`
   display: flex;
   align-items: stretch;
   height: 100vh;
+
+  @media (max-width: 796px){
+    flex-direction: column;
+  }
 `
 
 export const Aside = styled.aside`
@@ -17,30 +21,48 @@ export const Aside = styled.aside`
   padding: 120px 80px;
 
   img {
+    width: 100%;
     max-width: 320px;
   }
 
   strong {
-    font: 700 36px 'Poppins', sans-serif;
-    line-height: 42px;
+    font: 700 3.6rem 'Poppins', sans-serif;
+    line-height: 4.2rem;
     margin-top: 16px;
   }
 
   p {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
     color: ${colors.lightWhite};
     margin-top: 16px;
+  }
+
+  @media (max-width: 796px){
+    padding: 60px 30px; 
+    text-align: center;
+
+    img {
+      margin: 0 auto 20px;
+    }
+  }
+
+  @media (max-width: 360px){
+    padding-bottom: 20px;
   }
 `
 
 export const Main = styled.main`
-    flex: 8;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex: 8;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  @media (max-width: 796px){
+    margin: 64px 0;
+    order: -1;
+  }
 `
 
 export const MainContent = styled.div`
@@ -56,13 +78,13 @@ export const MainContent = styled.div`
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 2.4rem;
     font-family: 'Poppins', sans-serif;
     margin: 64px 0 24px;
   }
 
   p {
-    font-size: 14px;
+    font-size: 1.4rem;
     color: ${colors.darkGrey};
     margin-top: 16px;
 
@@ -96,7 +118,7 @@ export const CreateRoomButton = styled.button`
 `
 
 export const Separator = styled.div`
-  font-size: 14px;
+  font-size: 1.4rem;
   color: ${colors.lightGrey};
   margin: 32px 0;
   display: flex;
