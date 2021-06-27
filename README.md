@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# LetMeAsk
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Capturar](https://user-images.githubusercontent.com/57225006/123529875-1b520f80-d6cb-11eb-8e5d-4a897f26676d.PNG)
 
-## Available Scripts
+## Sobre o LetMeAsk
+Projeto desenvolvido durante o NLW #6, oferecido e organizado pela Rocketseat.
 
-In the project directory, you can run:
+Quando você está fazendo uma live, pode usar esta plataforma para que as pessoas que estão assistindo a sua live possam fazer perguntas.
+Essas perguntas podem ser 'curtidas' por outros usuário e também serem destacadas, respondidas e excluídas pelo administrador da sala.
 
-### `yarn start`
+* [Protótipo no Figma](https://www.figma.com/file/u0BQK8rCf2KgzcukdRRCWh/Letmeask/duplicate?node-id=0%3A1)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tecnologias utilizadas
+* [React](https://reactjs.org/)
+* [React Hot Toast](https://react-hot-toast.com/)
+* [Styled Components](https://styled-components.com/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [VS Code](https://code.visualstudio.com/)
+* [Firebase](https://firebase.google.com/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Como rodar o projeto
 
-### `yarn test`
+### Como desenvolvimento
+```bash
+# Abra um terminal e copie este repositório com o comando
+git clone https://github.com/Henrique-Peixoto/letmeask.git
+# ou use a opção de download.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Entre na pasta do projeto com 
+cd letmeask
 
-### `yarn build`
+# Instale as dependências
+yarn install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Rode a aplicação
+yarn start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Acesse http://localhost:3000 no seu navegador.
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Toda vez que você editar o código, o localhost irá recarregar para exibir as modificações e apresentar eventuais erros.
 
-### `yarn eject`
+### Como produção
+Para ver o site em versão de produção, execute o comando abaixo (você também já deve ter clonado e feito as instalações necessárias mostradas no passo anterior):
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`yarn build`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Essa versão será construida na pasta `build`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Essa é a maneira como o site irá se comportar caso o deploy dele seja feito.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Licença
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](/LICENSE) para mais detalhes.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Feito com :purple_heart: by [Henrique Peixoto](https://github.com/Henrique-Peixoto)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Linkedin](https://www.linkedin.com/in/henrique-peixoto-00/) 
